@@ -17,12 +17,12 @@ class BST {
         root = null;
     }
 
-    // Método para inserir um novo nó
+    // inserir nó
     void insert(int key) {
         root = insertRec(root, key);
     }
 
-    // Método recursivo para inserir um novo nó na árvore
+    // inserir um novo nó
     Node insertRec(Node root, int key) {
         if (root == null) {
             root = new Node(key);
@@ -37,12 +37,12 @@ class BST {
         return root;
     }
 
-    // Método para deletar um nó da árvore
+    // deletar o nó
     void delete(int key) {
         root = deleteRec(root, key);
     }
 
-    // Método recursivo para deletar um nó da árvore
+    // deleção recursiva 
     Node deleteRec(Node root, int key) {
         if (root == null)
             return root;
@@ -52,17 +52,17 @@ class BST {
         else if (key > root.val)
             root.right = deleteRec(root.right, key);
         else {
-            // Caso 1: Nó folha (sem filhos)
+            // Nó folha (sem filhos)
             if (root.left == null && root.right == null)
                 return null;
 
-                // Caso 2: Nó com um filho
+                // Nó com um filho
             else if (root.left == null)
                 return root.right;
             else if (root.right == null)
                 return root.left;
 
-            // Caso 3: Nó com dois filhos
+            // Nó com dois filhos
             root.val = minValue(root.right);
             root.right = deleteRec(root.right, root.val);
         }
@@ -70,7 +70,7 @@ class BST {
         return root;
     }
 
-    // Método para encontrar o menor valor em uma subárvore
+    //menor valor em uma sub-arvore
     int minValue(Node root) {
         int minv = root.val;
         while (root.left != null) {
@@ -80,13 +80,13 @@ class BST {
         return minv;
     }
 
-    // Método para travessia em ordem
+    // travessia em ordem
     void inorder() {
         inorderRec(root);
         System.out.println();
     }
 
-    // Método recursivo para travessia em ordem
+    //  recursivo para travessia
     void inorderRec(Node root) {
         if (root != null) {
             inorderRec(root.left);
@@ -95,12 +95,12 @@ class BST {
         }
     }
 
-    // Exemplo de uso
+    // implementação
     public static void main(String[] args) {
         BST tree = new BST();
         Scanner scanner = new Scanner(System.in);
 
-        // Inserir alguns valores na árvore
+        // Inserir valores
         tree.insert(50);
         tree.insert(30);
         tree.insert(20);
@@ -117,7 +117,7 @@ class BST {
             int num = scanner.nextInt();
 
             if (num == -1) {
-                break;  // Sai do loop se o usuário digitar -1
+                break;  // -1 para fim
             }
 
             tree.delete(num);
